@@ -10,7 +10,7 @@ on:
         type: string
 
       version:
-        description: 'SDK用来发布的版本号（不填写则以package.json中的version为准）'
+        description: 'SDK用来发布的版本号'
         required: true
         type: string
 
@@ -70,5 +70,5 @@ jobs:
           commit_message: Release ${{ inputs.version }} with ${{ inputs.url }}
           branch: release/${{ inputs.version }}
           repository: repo
-          tagging_message: ${{ inputs.version }}
+          tagging_message: ${{ !inputs.dry-run && inputs.version || '' }}
           create_branch: true
