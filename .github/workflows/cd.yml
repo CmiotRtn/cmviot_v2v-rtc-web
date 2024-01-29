@@ -72,3 +72,4 @@ jobs:
           repository: repo
           tagging_message: ${{ !inputs.dry-run && inputs.version || '' }}
           create_branch: true
+          push_options: '--force'
