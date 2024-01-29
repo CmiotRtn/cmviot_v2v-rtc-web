@@ -43,19 +43,10 @@ jobs:
           mv tmp package.json
         working-directory: repo/dist
 
-      - name: Commit and push modify
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Release ${{ inputs.version }} with ${{ inputs.url }}
-          branch: release/${{ inputs.version }}
-          repository: repo
-          tagging_message: ${{ inputs.version }}
-          create_branch: true
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: latest
 
       - name: Setup Npm
         run: |
@@ -65,9 +56,19 @@ jobs:
         if: ${{ inputs.dry-run }}
         run: |
           npm publish --dry-run
+        working-directory: repo/dist
 
       - name: NPM Publish
         if: ${{ !inputs.dry-run }}
         run: |
           npm publish
-        
+        working-directory: repo/dist
+
+      - name: Commit and push modify
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Release ${{ inputs.version }} with ${{ inputs.url }}
+          branch: release/${{ inputs.version }}
+          repository: repo
+          tagging_message: ${{ inputs.version }}
+          create_branch: true
