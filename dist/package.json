@@ -1,0 +1,13 @@
+{
+  "name": "cmviot-rtc-sdk-ng",
+  "version": "4.16.0-rc.500",
+  "description": "",
+  "keywords": [],
+  "main": "CmviotRTC_N-production.js",
+  "typings": "rtc-sdk_en.d.ts",
+  "declaration": true,
+  "declarationMap": true,
+  "author": "cmviot",
+  "license": "MIT",
+  "dependencies": {}
+}
